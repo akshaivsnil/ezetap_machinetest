@@ -11,7 +11,8 @@ import javax.inject.Inject
 class MainRepositoryImpl @Inject constructor(
     private val httpClient: HttpClient
 ) : MainRepository {
-    override suspend fun fetchCustomUIWithKTor(): DataHandler<UiResponse> {
+
+    override suspend fun fetchCustomUI(): DataHandler<UiResponse> {
         return try {
             DataHandler.SUCCESS(
                 httpClient.get {
@@ -24,4 +25,5 @@ class MainRepositoryImpl @Inject constructor(
             DataHandler.ERROR(message = e.toString())
         }
     }
+
 }

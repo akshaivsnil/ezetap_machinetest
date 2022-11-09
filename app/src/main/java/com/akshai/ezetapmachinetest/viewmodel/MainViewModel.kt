@@ -16,25 +16,13 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val _uiResponse = MutableStateFlow<DataHandler<UiResponse>>(DataHandler.LOADING())
     val uiResponse: StateFlow<DataHandler<UiResponse>> = _uiResponse
 
     fun fetchCustomUI() = viewModelScope.launch {
-        _uiResponse.value = mainRepository.fetchCustomUIWithKTor()
-    }
-
-
-    private fun handleResponse(response: Response<FetchUIResponse>): DataHandler<FetchUIResponse> {
-        if (response.isSuccessful) {
-            response.body()?.let {
-                return DataHandler.SUCCESS(
-                    data = it
-                )
-            }
-        }
-        return DataHandler.ERROR(message = "Data not Found")
+        _uiResponse.value = mainRepository.fetchCustomUI()
     }
 
 }

@@ -5,6 +5,6 @@ import com.akshai.ezetapmachinetest.utils.DataHandler
 
 interface MainRepository {
 
-    suspend fun fetchCustomUIWithKTor() : DataHandler<UiResponse>
+    suspend fun fetchCustomUI() : DataHandler<UiResponse>
 
 }
